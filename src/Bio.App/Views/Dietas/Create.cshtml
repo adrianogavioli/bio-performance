@@ -1,0 +1,52 @@
+﻿@model DietaViewModel
+
+@{
+    ViewData["Title"] = "Adicionar Dieta";
+}
+
+<form asp-action="Create">
+    <div class="container-toolbar tb-top">
+        <h6 class="title">@ViewData["Title"]</h6>
+        <div class="toolbar">
+            <button type="submit" class="tb-button"><i class="fa fa-cloud"></i><br />gravar</button>
+            <a asp-action="Edit" asp-controller="Atendimentos" asp-route-id="@Model.AtendimentoId" class="tb-button"><i class="fa fa-chevron-left"></i><br />voltar</a>
+        </div>
+    </div>
+    <div class="container-body">
+        <vc:summary></vc:summary>
+        <div class="card card-default">
+            <div class="card-default-header">Nova Dieta</div>
+            <div class="card-default-body">
+                <input type="hidden" asp-for="AtendimentoId" />
+                <div class="form-group">
+                    <label asp-for="Atendimento.PacienteId" class="control-label"></label>
+                    <input asp-for="Atendimento.Paciente.Nome" class="form-control" disabled />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Atendimento.Profissional" class="control-label"></label>
+                    <input asp-for="Atendimento.Profissional.Nome" class="form-control" disabled />
+                </div>
+                <div class="form-group">
+                    <label asp-for="TaxaMetabolicaBasal" class="control-label"></label>
+                    <input asp-for="TaxaMetabolicaBasal" class="form-control" />
+                    <span asp-validation-for="TaxaMetabolicaBasal" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Observacao" class="control-label"></label>
+                    <textarea asp-for="Observacao" rows="3" class="form-control"></textarea>
+                    <span asp-validation-for="Observacao" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-toolbar tb-bottom">
+        <div class="toolbar">
+            <button type="submit" class="tb-button"><i class="fa fa-cloud"></i><br />gravar</button>
+            <a asp-action="Edit" asp-controller="Atendimentos" asp-route-id="@Model.AtendimentoId" class="tb-button"><i class="fa fa-chevron-left"></i><br />voltar</a>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

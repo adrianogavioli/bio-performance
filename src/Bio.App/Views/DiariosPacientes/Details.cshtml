@@ -1,0 +1,25 @@
+﻿@model DiarioPacienteViewModel
+
+@{
+    ViewData["Title"] = "Detalhar Evento do Diário";
+}
+
+<div class="container-toolbar tb-top">
+    <h6 class="title">@ViewData["Title"]</h6>
+    <div class="toolbar">
+        <a href="javascript:window.history.back();" class="tb-button"><i class="fa fa-chevron-left"></i><br />voltar</a>
+    </div>
+</div>
+<div class="container-body">
+    <div class="card-default">
+        <div class="card-default-header">Detalhes do Evento</div>
+        <div class="card-default-body">
+            <partial name="_Detalhes" />
+        </div>
+    </div>
+</div>
+<div class="container-toolbar tb-bottom">
+    <div class="toolbar">
+        <a href="javascript:window.history.back();" class="tb-button"><i class="fa fa-chevron-left"></i><br />voltar</a>
+    </div>
+</div>

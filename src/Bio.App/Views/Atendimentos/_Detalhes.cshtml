@@ -1,0 +1,30 @@
+﻿@model AtendimentoViewModel
+
+<div class="form-group">
+    <label asp-for="PacienteId" class="control-label"></label>
+    <input asp-for="Paciente.Nome" class="form-control" disabled />
+</div>
+<div class="form-group">
+    <label asp-for="ProfissionalId" class="control-label"></label>
+    <input asp-for="Profissional.Nome" class="form-control" disabled />
+</div>
+<div class="form-group">
+    <label asp-for="Objetivo" class="control-label"></label>
+    <textarea asp-for="Objetivo" class="form-control" rows="3" disabled></textarea>
+</div>
+<div class="form-group">
+    <label asp-for="RestricaoMedica" class="control-label"></label>
+    <textarea asp-for="RestricaoMedica" class="form-control" rows="3" disabled></textarea>
+</div>
+<div class="form-group">
+    <label asp-for="RestricaoAlimentar" class="control-label"></label>
+    <textarea asp-for="RestricaoAlimentar" class="form-control" rows="3" disabled></textarea>
+</div>
+<div class="form-group">
+    <label asp-for="Observacao" class="control-label"></label>
+    <textarea asp-for="Observacao" class="form-control" rows="3" disabled></textarea>
+</div>
+<div class="form-group">
+    <label asp-for="DataCadastro" class="control-label"></label>
+    <input asp-for="DataCadastro" class="form-control" disabled />
+</div>

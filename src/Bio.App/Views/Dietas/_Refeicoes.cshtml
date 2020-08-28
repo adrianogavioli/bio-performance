@@ -1,0 +1,91 @@
+﻿@model DietaViewModel
+
+<partial name="_CalculoCalorico" />
+<div style="margin-top: -1px;"><partial name="_CalculoValoresNutricionais" /></div>
+
+<div class="card card-default mt-4">
+    <div class="card-default-header">Refeições</div>
+    <div class="card-default-body">
+        @if (Model.Refeicoes == null || Model.Refeicoes.Count() == 0)
+        {
+            <h6>Não há refeições cadastradas.</h6>
+        }
+        else
+        {
+            <table class="table table-default table-responsive-xl table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Refeicoes[0].RefeicaoId)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Refeicoes[0].AlimentoId)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Refeicoes[0].Quantidade)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Refeicoes[0].Alimento.UnidadeMedidaId)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Refeicoes[0].Proteinas)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Refeicoes[0].Carboidratos)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Refeicoes[0].Gorduras)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Refeicoes[0].Calorias)
+                        </th>
+                        <th width="1%"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Refeicoes)
+                    {
+                        <tr>
+                            <td>
+                                @item.Refeicao.Descricao
+                            </td>
+                            <td>
+                                @item.Alimento.Descricao
+                            </td>
+                            <td>
+                                @item.Quantidade
+                            </td>
+                            <td>
+                                @item.Alimento.UnidadeMedida.Descricao
+                            </td>
+                            <td>
+                                @item.Proteinas.ToString("n2")
+                            </td>
+                            <td>
+                                @item.Carboidratos.ToString("n2")
+                            </td>
+                            <td>
+                                @item.Gorduras.ToString("n2")
+                            </td>
+                            <td>
+                                @item.Calorias
+                            </td>
+                            <td class="btn-group">
+                                <a asp-action="DetalharRefeicao" asp-route-id="@item.Id" class="table-default-btn text-info" title="Detalhar" data-modal><span class="fa fa-search"></span></a>
+                                <a supress-by-action="Details" asp-action="EditarRefeicao" asp-route-id="@item.Id" class="table-default-btn text-success" title="Editar" data-modal><span class="fa fa-pencil-alt"></span></a>
+                                <a supress-by-action="Details" asp-action="GerenciarSubstituicao" asp-route-dietaRefeicaoAlimentoId="@item.Id" class="table-default-btn text-secondary" title="Substituições" data-modal><span class="fa fa-exchange-alt"></span></a>
+                                <a supress-by-action="Details" asp-action="RemoverRefeicao" asp-route-id="@item.Id" class="table-default-btn text-danger" title="Remover" data-modal><span class="fa fa-trash"></span></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        AjaxModal();
+    });
+</script>

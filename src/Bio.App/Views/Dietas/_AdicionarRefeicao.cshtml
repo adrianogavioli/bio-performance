@@ -1,0 +1,75 @@
+﻿@model DietaRefeicaoAlimentoViewModel
+@{
+    ViewData["Title"] = "Adicionar Refeição";
+}
+
+<div class="modal-header">@ViewData["Title"]</div>
+<form asp-action="AdicionarRefeicao">
+    <vc:summary-modal></vc:summary-modal>
+    <div class="modal-body">
+        <input type="hidden" asp-for="DietaId" />
+        <div class="form-group">
+            <label asp-for="RefeicaoId" class="control-label"></label>
+            <select asp-for="RefeicaoId" class="form-control" asp-items="@(new SelectList(Model.RefeicoesDropdown, "Id", "Descricao"))">
+                <option></option>
+            </select>
+            <span asp-validation-for="RefeicaoId" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="AlimentoId" class="control-label"></label>
+            <input asp-for="Alimento.Descricao" class="form-control" />
+            <span asp-validation-for="Alimento.Descricao" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Quantidade" class="control-label"></label>
+            <input asp-for="Quantidade" class="form-control" />
+            <span asp-validation-for="Quantidade" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Alimento.UnidadeMedidaId" class="control-label"></label>
+            <input asp-for="Alimento.UnidadeMedida.Descricao" class="form-control" disabled />
+        </div>
+        <div class="form-group mb-0">
+            <label asp-for="Observacao" class="control-label"></label>
+            <textarea rows="3" asp-for="Observacao" class="form-control"></textarea>
+            <span asp-validation-for="Observacao" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <input type="submit" value="Adicionar" class="btn btn-success" />
+        <input type="button" class="btn btn-dark" value="Fechar" data-dismiss="modal" />
+    </div>
+</form>
+
+<link href="~/lib/jqueryui/jquery-ui.min.css" rel="stylesheet" />
+
+<script src="~/lib/jqueryui/jquery-ui.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#Alimento_Descricao').autocomplete({
+            source: '/alimento-autocomplete',
+            minLength: 4,
+            appendTo: '#myModal'
+        });
+
+        $("#Alimento_Descricao").blur(function () {
+            var alimentoDescricao = $('#Alimento_Descricao').val();
+
+            $.ajax({
+                url: "/alimento-autocomplete-unidade-medida",
+                type: "GET",
+                cache: false,
+                async: true,
+                dataType: "html",
+                data: { alimentoDescricao }
+            })
+                .done(function (result) {
+                    $("#Alimento_UnidadeMedida_Descricao").val(result);
+                })
+                .fail(function () {
+                    $("#Alimento_UnidadeMedida_Descricao").val("");
+                })
+        });
+    });
+</script>

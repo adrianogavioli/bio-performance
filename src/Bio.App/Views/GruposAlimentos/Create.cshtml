@@ -1,0 +1,49 @@
+﻿@model GrupoAlimentoViewModel
+
+@{
+    ViewData["Title"] = "Adicionar Grupo de Alimentos";
+}
+
+<form asp-action="Create">
+    <div class="container-toolbar tb-top">
+        <h6 class="title">@ViewData["Title"]</h6>
+        <div class="toolbar">
+            <button type="submit" class="tb-button"><i class="fa fa-cloud"></i><br />gravar</button>
+            <a asp-action="Index" class="tb-button"><i class="fa fa-chevron-left"></i><br />voltar</a>
+        </div>
+    </div>
+    <div class="container-body">
+        <vc:summary></vc:summary>
+        <div class="card card-default">
+            <div class="card-default-header">Novo Grupo</div>
+            <div class="card-default-body">
+                <div class="form-group">
+                    <label asp-for="Codigo" class="control-label"></label>
+                    <input asp-for="Codigo" class="form-control" />
+                    <span asp-validation-for="Codigo" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Descricao" class="control-label"></label>
+                    <input asp-for="Descricao" class="form-control" />
+                    <span asp-validation-for="Descricao" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-toolbar tb-bottom">
+        <div class="toolbar">
+            <button type="submit" class="tb-button"><i class="fa fa-cloud"></i><br />gravar</button>
+            <a asp-action="Index" class="tb-button"><i class="fa fa-chevron-left"></i><br />voltar</a>
+        </div>
+    </div>
+</form>
+
+@section Styles {
+    <link href="~/lib/bootstrap-toggle/css/bootstrap4-toggle.min.css" rel="stylesheet" />
+}
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script src="~/lib/bootstrap-toggle/js/bootstrap4-toggle.min.js"></script>
+}

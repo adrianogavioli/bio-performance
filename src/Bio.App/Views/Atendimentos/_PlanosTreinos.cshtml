@@ -1,0 +1,47 @@
+﻿@model AtendimentoViewModel
+
+@if (Model.PlanosTreinos == null || Model.PlanosTreinos.Count == 0)
+{
+    <h6>Não há treinos cadastrados.</h6>
+}
+else
+{
+    <table class="table table-default table-responsive-xl table-striped">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.PlanosTreinos[0].Observacao)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PlanosTreinos[0].DataCadastro)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PlanosTreinos[0].Ativo)
+                </th>
+                <th width="1%"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.PlanosTreinos)
+            {
+                <tr>
+                    <td>
+                        @item.Observacao
+                    </td>
+                    <td>
+                        @item.DataCadastro.ToShortDateString()
+                    </td>
+                    <td>
+                        @if (item.Ativo) { <span>SIM</span> } else { <span>NÃO</span> }
+                    </td>
+                    <td class="btn-group">
+                        <a asp-action="Details" asp-controller="PlanosTreinos" asp-route-id="@item.Id" class="table-default-btn text-info" title="Detalhar"><span class="fa fa-search"></span></a>
+                        <a supress-by-action="Details" asp-action="Edit" asp-controller="PlanosTreinos" asp-route-id="@item.Id" class="table-default-btn text-success" title="Editar"><span class="fa fa-pencil-alt"></span></a>
+                        <a asp-action="Print" asp-controller="PlanosTreinos" asp-route-id="@item.Id" class="table-default-btn text-secondary" title="Imprimir" target="_blank"><span class="fa fa-print"></span></a>
+                        <a supress-by-action="Details" asp-action="Delete" asp-controller="PlanosTreinos" asp-route-id="@item.Id" class="table-default-btn text-danger" title="Remover"><span class="fa fa-trash"></span></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

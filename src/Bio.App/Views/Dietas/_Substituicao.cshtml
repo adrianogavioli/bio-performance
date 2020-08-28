@@ -1,0 +1,42 @@
+﻿@model DietaRefeicaoSubstituicaoViewModel
+
+<table class="table table-default table-responsive-xl table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AlimentoId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantidade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Alimento.UnidadeMedidaId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Calorias)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Observacao)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @Model.Alimento.Descricao
+            </td>
+            <td>
+                @Model.Quantidade
+            </td>
+            <td>
+                @Model.Alimento.UnidadeMedida.Descricao
+            </td>
+            <td>
+                @Model.Calorias
+            </td>
+            <td>
+                @Model.Observacao
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,56 @@
+﻿@model DietaRefeicaoAlimentoViewModel
+
+@if (Model.DietasRefeicoesSubstituicoes == null || Model.DietasRefeicoesSubstituicoes.Count == 0)
+{
+    <span>Não há substituições cadastradas.</span>
+}
+else
+{
+    <table class="table table-default table-responsive-xl table-striped">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.DietasRefeicoesSubstituicoes[0].AlimentoId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DietasRefeicoesSubstituicoes[0].Quantidade)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DietasRefeicoesSubstituicoes[0].Alimento.UnidadeMedidaId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DietasRefeicoesSubstituicoes[0].Calorias)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DietasRefeicoesSubstituicoes[0].Observacao)
+                </th>
+                <th width="1%"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.DietasRefeicoesSubstituicoes)
+            {
+                <tr>
+                    <td>
+                        @item.Alimento.Descricao
+                    </td>
+                    <td>
+                        @item.Quantidade
+                    </td>
+                    <td>
+                        @item.Alimento.UnidadeMedida.Descricao
+                    </td>
+                    <td>
+                        @item.Calorias
+                    </td>
+                    <td>
+                        @item.Observacao
+                    </td>
+                    <td class="btn-group">
+                        <a supress-by-action="DetalharRefeicao" asp-action="RemoverSubstituicao" asp-route-id="@item.Id" class="table-default-btn text-danger" title="Remover" data-modal-reverso><span class="fa fa-trash"></span></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

@@ -1,0 +1,80 @@
+﻿@model AlimentoViewModel
+
+@if (Model.AlimentosSubstituicoes == null || Model.AlimentosSubstituicoes.Count() == 0)
+{
+    <h6>Não há alimentos substitutos cadastrados.</h6>
+}
+else
+{
+    <table class="table table-default table-responsive-xl table-striped">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.AlimentosSubstituicoes[0].AlimentoSubstituto.Descricao)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AlimentosSubstituicoes[0].AlimentoSubstituto.Carboidratos)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AlimentosSubstituicoes[0].AlimentoSubstituto.Proteinas)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AlimentosSubstituicoes[0].AlimentoSubstituto.Gorduras)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AlimentosSubstituicoes[0].AlimentoSubstituto.Calorias)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AlimentosSubstituicoes[0].AlimentoSubstituto.Porcao)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AlimentosSubstituicoes[0].AlimentoSubstituto.UnidadeMedidaId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AlimentosSubstituicoes[0].AlimentoSubstituto.GrupoAlimentoId)
+                </th>
+                <th width="1%"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.AlimentosSubstituicoes)
+            {
+                <tr>
+                    <td>
+                        @item.AlimentoSubstituto.Descricao
+                    </td>
+                    <td>
+                        @item.AlimentoSubstituto.Carboidratos
+                    </td>
+                    <td>
+                        @item.AlimentoSubstituto.Proteinas
+                    </td>
+                    <td>
+                        @item.AlimentoSubstituto.Gorduras
+                    </td>
+                    <td>
+                        @item.AlimentoSubstituto.Calorias
+                    </td>
+                    <td>
+                        @item.AlimentoSubstituto.Porcao
+                    </td>
+                    <td>
+                        @item.AlimentoSubstituto.UnidadeMedida.Descricao
+                    </td>
+                    <td>
+                        @item.AlimentoSubstituto.GrupoAlimento.Descricao
+                    </td>
+                    <td class="btn-group">
+                        <a supress-by-action="Details" asp-action="RemoverAlimentoSubstituto" asp-route-id="@item.Id" class="table-default-btn text-danger" title="Remover" data-modal><span class="fa fa-trash"></span></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<script>
+    $(document).ready(function () {
+        AjaxModal();
+    });
+</script>

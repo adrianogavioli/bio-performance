@@ -1,0 +1,84 @@
+﻿@model AtendimentoViewModel
+
+@{
+    ViewData["Title"] = "Editar Atendimento";
+}
+
+<form asp-action="Edit">
+    <div class="container-toolbar tb-top">
+        <h6 class="title">@ViewData["Title"]</h6>
+        <div class="toolbar">
+            <button type="submit" class="tb-button"><i class="fa fa-redo-alt"></i><br />atualizar</button>
+            <a asp-action="Create" asp-controller="Dietas" asp-route-atendimentoId="@Model.Id" class="tb-button"><i class="fa fa-plus"></i><br />dieta</a>
+            <a asp-action="Create" asp-controller="PlanosTreinos" asp-route-atendimentoId="@Model.Id" class="tb-button"><i class="fa fa-plus"></i><br />treino</a>
+            <a href="javascript:window.history.back();" class="tb-button"><i class="fa fa-chevron-left"></i><br />voltar</a>
+        </div>
+    </div>
+    <div class="container-body">
+        <vc:summary></vc:summary>
+        <div class="card card-default">
+            <div class="card-default-header">Editar Atendimento</div>
+            <div class="card-default-body">
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <label asp-for="PacienteId" class="control-label"></label>
+                    <input asp-for="Paciente.Nome" class="form-control" disabled />
+                </div>
+                <div class="form-group">
+                    <label asp-for="ProfissionalId" class="control-label"></label>
+                    <input asp-for="Profissional.Nome" class="form-control" disabled />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Objetivo" class="control-label"></label>
+                    <textarea asp-for="Objetivo" class="form-control" rows="3"></textarea>
+                    <span asp-validation-for="Objetivo" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="RestricaoMedica" class="control-label"></label>
+                    <textarea asp-for="RestricaoMedica" class="form-control" rows="3"></textarea>
+                    <span asp-validation-for="RestricaoMedica" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="RestricaoAlimentar" class="control-label"></label>
+                    <textarea asp-for="RestricaoAlimentar" class="form-control" rows="3"></textarea>
+                    <span asp-validation-for="RestricaoAlimentar" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Observacao" class="control-label"></label>
+                    <textarea asp-for="Observacao" class="form-control" rows="3"></textarea>
+                    <span asp-validation-for="Observacao" class="text-danger"></span>
+                </div>
+                <div class="row mt-5">
+                    <div class="col-md-6">
+                        <div class="card card-default">
+                            <div class="card-default-header">Dietas</div>
+                            <div class="card-default-body">
+                                <partial name="_Dietas" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card card-default">
+                            <div class="card-default-header">Planos de Treinos</div>
+                            <div class="card-default-body">
+                                <partial name="_PlanosTreinos" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-toolbar tb-bottom">
+        <div class="toolbar">
+            <button type="submit" class="tb-button"><i class="fa fa-redo-alt"></i><br />atualizar</button>
+            <a asp-action="Create" asp-controller="Dietas" asp-route-atendimentoId="@Model.Id" class="tb-button"><i class="fa fa-plus"></i><br />dieta</a>
+            <a asp-action="Create" asp-controller="PlanosTreinos" asp-route-atendimentoId="@Model.Id" class="tb-button"><i class="fa fa-plus"></i><br />treino</a>
+            <a href="javascript:window.history.back();" class="tb-button"><i class="fa fa-chevron-left"></i><br />voltar</a>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

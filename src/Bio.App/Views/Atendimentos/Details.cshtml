@@ -1,0 +1,45 @@
+﻿@model AtendimentoViewModel
+
+@{
+    ViewData["Title"] = "Detalhar Atendimento";
+}
+
+<div class="container-toolbar tb-top">
+    <h6 class="title">@ViewData["Title"]</h6>
+    <div class="toolbar">
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="tb-button"><i class="fa fa-pencil-alt"></i><br />editar</a>
+        <a href="javascript:window.history.back();" class="tb-button"><i class="fa fa-chevron-left"></i><br />voltar</a>
+    </div>
+</div>
+<div class="container-body">
+    <div class="card card-default">
+        <div class="card-default-header">Detalhes do Atendimento</div>
+        <div class="card-default-body">
+            <partial name="_Detalhes" />
+            <div class="row mt-5">
+                <div class="col-md-6">
+                    <div class="card card-default">
+                        <div class="card-default-header">Dietas</div>
+                        <div class="card-default-body">
+                            <partial name="_Dietas" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card card-default">
+                        <div class="card-default-header">Planos de Treinos</div>
+                        <div class="card-default-body">
+                            <partial name="_PlanosTreinos" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-toolbar tb-bottom">
+    <div class="toolbar">
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="tb-button"><i class="fa fa-pencil-alt"></i><br />editar</a>
+        <a href="javascript:window.history.back();" class="tb-button"><i class="fa fa-chevron-left"></i><br />voltar</a>
+    </div>
+</div>

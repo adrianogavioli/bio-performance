@@ -1,0 +1,38 @@
+﻿@model DietaRefeicaoAlimentoViewModel
+@{
+    ViewData["Title"] = "Remover Refeição";
+}
+
+<div class="modal-header">@ViewData["Title"]</div>
+<div class="modal-alert-message">
+    <h6>Tem certeza que deseja remover esta refeição?</h6>
+</div>
+<div class="modal-body">
+    <div class="form-group">
+        <label asp-for="RefeicaoId" class="control-label"></label>
+        <input asp-for="Refeicao.Descricao" class="form-control" disabled />
+    </div>
+    <div class="form-group">
+        <label asp-for="AlimentoId" class="control-label"></label>
+        <input asp-for="Alimento.Descricao" class="form-control" disabled />
+    </div>
+    <div class="form-group">
+        <label asp-for="Quantidade" class="control-label"></label>
+        <input asp-for="Quantidade" class="form-control" disabled />
+    </div>
+    <div class="form-group">
+        <label asp-for="Alimento.UnidadeMedidaId" class="control-label"></label>
+        <input asp-for="Alimento.UnidadeMedida.Descricao" class="form-control" disabled />
+    </div>
+    <div class="form-group">
+        <label asp-for="Observacao" class="control-label"></label>
+        <textarea asp-for="Observacao" rows="3" class="form-control" disabled></textarea>
+    </div>
+</div>
+<div class="modal-footer">
+    <form asp-action="RemoverRefeicao">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Remover" class="btn btn-danger" />
+    </form>
+    <input type="button" class="btn btn-dark" value="Fechar" data-dismiss="modal" />
+</div>

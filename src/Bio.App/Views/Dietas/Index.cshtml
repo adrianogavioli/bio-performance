@@ -1,0 +1,81 @@
+﻿@model IEnumerable<DietaViewModel>
+
+@{
+    ViewData["Title"] = "Dietas";
+}
+
+<div class="container-toolbar tb-top">
+    <h6 class="title">@ViewData["Title"]</h6>
+    <div class="toolbar"></div>
+</div>
+<div class="container-body">
+    @if (Model == null || Model.Count() == 0)
+    {
+        <h6>Não há dietas cadastradas.</h6>
+    }
+    else
+    {
+        <div class="container-table-default">
+            <table id="tableIndex" class="table table-default table-responsive-xl display">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Atendimento.PacienteId)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Atendimento.ProfissionalId)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TaxaMetabolicaBasal)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Ativo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DataCadastro)
+                        </th>
+                        <th width="1%"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @item.Atendimento.Paciente.Nome
+                            </td>
+                            <td>
+                                @item.Atendimento.Profissional.Nome
+                            </td>
+                            <td>
+                                @item.TaxaMetabolicaBasal
+                            </td>
+                            <td>
+                                @if (item.Ativo)
+                                {
+                                    <span>SIM</span>
+                                }
+                                else
+                                {
+                                    <span>NÃO</span>
+                                }
+                            </td>
+                            <td>
+                                @item.DataCadastro
+                            </td>
+                            <td class="btn-group">
+                                <a asp-action="Details" asp-route-id="@item.Id" class="table-default-btn text-info" title="Detalhar"><span class="fa fa-search"></span></a>
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="table-default-btn text-success" title="Editar"><span class="fa fa-pencil-alt"></span></a>
+                                <a asp-action="Print" asp-route-id="@item.Id" class="table-default-btn text-secondary" title="Imprimir" target="_blank"><span class="fa fa-print"></span></a>
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="table-default-btn text-danger" title="Remover"><span class="fa fa-trash"></span></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>
+<div class="container-toolbar tb-bottom">
+    <div class="toolbar"></div>
+</div>

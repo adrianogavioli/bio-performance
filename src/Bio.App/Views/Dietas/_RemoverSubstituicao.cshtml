@@ -1,0 +1,22 @@
+﻿@model DietaRefeicaoSubstituicaoViewModel
+@{
+    ViewData["Title"] = "Remover Substituição";
+}
+
+<div class="modal-header">@ViewData["Title"]</div>
+<div class="modal-alert-message">
+    <h6>Tem certeza que deseja remover esta substituição?</h6>
+</div>
+<div class="modal-body">
+    <partial name="_Refeicao" model="@Model.DietaRefeicaoAlimento" />
+    <hr />
+    <h6 class="text-secondary">Substituição</h6>
+    <partial name="_Substituicao" />
+</div>
+<div class="modal-footer">
+    <form asp-action="RemoverSubstituicao">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Remover" class="btn btn-danger" />
+    </form>
+    <input type="button" class="btn btn-dark" value="Fechar" data-dismiss="modal" />
+</div>

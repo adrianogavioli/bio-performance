@@ -1,0 +1,41 @@
+﻿@model DietaRefeicaoAlimentoViewModel
+@{
+    ViewData["Title"] = "Editar Refeição";
+}
+
+<div class="modal-header">@ViewData["Title"]</div>
+<form asp-action="EditarRefeicao">
+    <vc:summary-modal></vc:summary-modal>
+    <div class="modal-body">
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="DietaId" />
+        <input type="hidden" asp-for="Refeicao.Descricao" />
+        <input type="hidden" asp-for="Alimento.Descricao" />
+        <div class="form-group">
+            <label asp-for="RefeicaoId" class="control-label"></label>
+            <input asp-for="Refeicao.Descricao" class="form-control" disabled />
+        </div>
+        <div class="form-group">
+            <label asp-for="AlimentoId" class="control-label"></label>
+            <input asp-for="Alimento.Descricao" class="form-control" disabled />
+        </div>
+        <div class="form-group">
+            <label asp-for="Quantidade" class="control-label"></label>
+            <input asp-for="Quantidade" class="form-control" />
+            <span asp-validation-for="Quantidade" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Alimento.UnidadeMedidaId" class="control-label"></label>
+            <input asp-for="Alimento.UnidadeMedida.Descricao" class="form-control" disabled />
+        </div>
+        <div class="form-group">
+            <label asp-for="Observacao" class="control-label"></label>
+            <textarea rows="3" asp-for="Observacao" class="form-control"></textarea>
+            <span asp-validation-for="Observacao" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <input type="submit" value="Atualizar" class="btn btn-success" />
+        <input type="button" class="btn btn-dark" value="Fechar" data-dismiss="modal" />
+    </div>
+</form>

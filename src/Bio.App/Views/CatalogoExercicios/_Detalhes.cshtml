@@ -1,0 +1,14 @@
+﻿@model CatalogoExercicioViewModel
+
+<div class="form-group">
+    <label asp-for="GrupoMuscularId" class="control-label"></label>
+    <input asp-for="GrupoMuscular.Descricao" class="form-control" disabled />
+</div>
+<div class="form-group">
+    <label asp-for="Descricao" class="control-label"></label>
+    <input asp-for="Descricao" class="form-control" disabled />
+</div>
+<div class="custom-control custom-switch mt-4">
+    <input asp-for="Ativo" type="checkbox" class="custom-control-input" id="cbxAtivoExercicioDetails" disabled />
+    <label class="custom-control-label" for="cbxAtivoExercicioDetails">Ativo</label>
+</div>

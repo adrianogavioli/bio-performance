@@ -1,0 +1,80 @@
+﻿@model AlimentoViewModel
+
+@{
+    ViewData["Title"] = "Adicionar Alimento";
+}
+
+<form asp-action="Create">
+    <div class="container-toolbar tb-top">
+        <h6 class="title">@ViewData["Title"]</h6>
+        <div class="toolbar">
+            <button type="submit" class="tb-button"><i class="fa fa-cloud"></i><br />gravar</button>
+            <a asp-action="Index" class="tb-button"><i class="fa fa-chevron-left"></i><br />voltar</a>
+        </div>
+    </div>
+    <div class="container-body">
+        <vc:summary></vc:summary>
+        <div class="card card-default">
+            <div class="card-default-header">Novo Alimento</div>
+            <div class="card-default-body">
+                <div class="form-group">
+                    <label asp-for="Descricao" class="control-label"></label>
+                    <input asp-for="Descricao" class="form-control" />
+                    <span asp-validation-for="Descricao" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Carboidratos" class="control-label"></label>
+                    <input asp-for="Carboidratos" id="carboidratos" class="form-control" />
+                    <span asp-validation-for="Carboidratos" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Proteinas" class="control-label"></label>
+                    <input asp-for="Proteinas" id="proteinas" class="form-control" />
+                    <span asp-validation-for="Proteinas" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Gorduras" class="control-label"></label>
+                    <input asp-for="Gorduras" id="gorduras" class="form-control" />
+                    <span asp-validation-for="Gorduras" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Calorias" class="control-label"></label>
+                    <input asp-for="Calorias" id="calorias" class="form-control" disabled />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Porcao" class="control-label"></label>
+                    <input asp-for="Porcao" class="form-control" />
+                    <span asp-validation-for="Porcao" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="UnidadeMedidaId" class="control-label"></label>
+                    <select asp-for="UnidadeMedidaId" class="form-control" asp-items="@(new SelectList(Model.UnidadesMedidasDropdown, "Id", "Descricao"))">
+                        <option></option>
+                    </select>
+                    <span asp-validation-for="UnidadeMedidaId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="GrupoAlimentoId" class="control-label"></label>
+                    <select asp-for="GrupoAlimentoId" class="form-control" asp-items="@(new SelectList(Model.GruposAlimentosDropdown, "Id", "Descricao"))">
+                        <option></option>
+                    </select>
+                    <span asp-validation-for="GrupoAlimentoId" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-toolbar tb-bottom">
+        <div class="toolbar">
+            <button type="submit" class="tb-button"><i class="fa fa-cloud"></i><br />gravar</button>
+            <a asp-action="Index" class="tb-button"><i class="fa fa-chevron-left"></i><br />voltar</a>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        await Html.RenderPartialAsync("_CalculoCaloriasScriptsPartial");
+    }
+}
+

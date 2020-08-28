@@ -1,0 +1,16 @@
+﻿@model DietaViewModel
+
+<div class="card-group text-center">
+    <div class="card card-default">
+        <div class="card-default-header"><label class="m-0" asp-for="TaxaMetabolicaBasal"></label></div>
+        <div class="card-default-body"><h4>@Model.TaxaMetabolicaBasal</h4></div>
+    </div>
+    <div class="card card-default">
+        <div class="card-default-header"><label class="m-0" asp-for="CaloriasTotais"></label></div>
+        <div class="card-default-body"><h4>@Model.CaloriasTotais</h4></div>
+    </div>
+    <div class="card card-default">
+        <div class="card-default-header"><label class="m-0" asp-for="DiferencaCalorica"></label></div>
+        <div class="card-default-body"><h4>@Model.DiferencaCalorica</h4></div>
+    </div>
+</div>

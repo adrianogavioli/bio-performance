@@ -1,0 +1,33 @@
+﻿@model AlimentoViewModel
+
+@{
+    ViewData["Title"] = "Detalhar Alimento";
+}
+
+<div class="container-toolbar tb-top">
+    <h6 class="title">@ViewData["Title"]</h6>
+    <div class="toolbar">
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="tb-button"><i class="fa fa-pencil-alt"></i><br />editar</a>
+        <a href="javascript:window.history.back();" class="tb-button"><i class="fa fa-chevron-left"></i><br />voltar</a>
+    </div>
+</div>
+<div class="container-body">
+    <div class="card card-default">
+        <div class="card-default-header">Detalhes do Alimento</div>
+        <div class="card-default-body">
+            <partial name="_Detalhes" />
+        </div>
+    </div>
+    <div class="card card-default mt-4">
+        <div class="card-default-header">Substituições</div>
+        <div class="card-default-body">
+            <partial name="_Substituicoes" />
+        </div>
+    </div>
+</div>
+<div class="container-toolbar tb-bottom">
+    <div class="toolbar">
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="tb-button"><i class="fa fa-pencil-alt"></i><br />editar</a>
+        <a href="javascript:window.history.back();" class="tb-button"><i class="fa fa-chevron-left"></i><br />voltar</a>
+    </div>
+</div>

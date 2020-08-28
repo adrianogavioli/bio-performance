@@ -1,0 +1,47 @@
+﻿@model CatalogoExercicioViewModel
+
+@{
+    ViewData["Title"] = "Editar Exercício do Catálogo";
+}
+
+<form asp-action="Edit">
+    <div class="container-toolbar tb-top">
+        <h6 class="title">@ViewData["Title"]</h6>
+        <div class="toolbar">
+            <button type="submit" class="tb-button"><i class="fa fa-redo-alt"></i><br />atualizar</button>
+            <a href="javascript:window.history.back();" class="tb-button"><i class="fa fa-chevron-left"></i><br />voltar</a>
+        </div>
+    </div>
+    <div class="container-body">
+        <vc:summary></vc:summary>
+        <div class="card card-default">
+            <div class="card-default-header">Editar Exercício</div>
+            <div class="card-default-body">
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <label asp-for="GrupoMuscularId" class="control-label"></label>
+                    <input asp-for="GrupoMuscular.Descricao" class="form-control" disabled />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Descricao" class="control-label"></label>
+                    <input asp-for="Descricao" class="form-control" />
+                    <span asp-validation-for="Descricao" class="text-danger"></span>
+                </div>
+                <div class="custom-control custom-switch mt-4">
+                    <input asp-for="Ativo" type="checkbox" class="custom-control-input" id="cbxAtivoExercicioEdit" />
+                    <label class="custom-control-label" for="cbxAtivoExercicioEdit">Ativo</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-toolbar tb-bottom">
+        <div class="toolbar">
+            <button type="submit" class="tb-button"><i class="fa fa-redo-alt"></i><br />atualizar</button>
+            <a href="javascript:window.history.back();" class="tb-button"><i class="fa fa-chevron-left"></i><br />voltar</a>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

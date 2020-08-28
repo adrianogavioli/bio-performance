@@ -1,0 +1,16 @@
+﻿@model DietaViewModel
+
+<div class="card-group text-center">
+    <div class="card card-default">
+        <div class="card-default-header"><label class="m-0" asp-for="ProteinasTotais"></label></div>
+        <div class="card-default-body"><h4>@Model.ProteinasTotais.ToString("n2")</h4></div>
+    </div>
+    <div class="card card-default">
+        <div class="card-default-header"><label class="m-0" asp-for="CarboidratosTotais"></label></div>
+        <div class="card-default-body"><h4>@Model.CarboidratosTotais.ToString("n2")</h4></div>
+    </div>
+    <div class="card card-default">
+        <div class="card-default-header"><label class="m-0" asp-for="GordurasTotais"></label></div>
+        <div class="card-default-body"><h4>@Model.GordurasTotais.ToString("n2")</h4></div>
+    </div>
+</div>

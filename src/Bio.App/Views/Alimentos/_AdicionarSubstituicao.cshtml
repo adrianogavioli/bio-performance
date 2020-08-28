@@ -1,0 +1,35 @@
+﻿@model AlimentoSubstituicaoViewModel
+@{
+    ViewData["Title"] = "Adicionar Substituição";
+}
+
+<div class="modal-header">@ViewData["Title"]</div>
+<form asp-action="AdicionarAlimentoSubstituto">
+    <vc:summary-modal></vc:summary-modal>
+    <div class="modal-body">
+        <input type="hidden" asp-for="AlimentoId" />
+        <div class="form-group">
+            <label asp-for="AlimentoSubstituto.Descricao" class="control-label"></label>
+            <input asp-for="AlimentoSubstituto.Descricao" id="alimentoDescricao" class="form-control" />
+            <span asp-validation-for="AlimentoSubstituto.Descricao" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <input type="submit" value="Adicionar" class="btn btn-success" />
+        <input type="button" class="btn btn-dark" value="Fechar" data-dismiss="modal" />
+    </div>
+</form>
+
+<link href="~/lib/jqueryui/jquery-ui.min.css" rel="stylesheet" />
+
+<script src="~/lib/jqueryui/jquery-ui.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#alimentoDescricao').autocomplete({
+            source: '/alimento-autocomplete',
+            minLength: 4,
+            appendTo: '#myModal'
+        });
+    });
+</script>

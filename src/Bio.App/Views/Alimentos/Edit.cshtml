@@ -1,0 +1,87 @@
+﻿@model AlimentoViewModel
+
+@{
+    ViewData["Title"] = "Editar Alimento";
+}
+
+<form asp-action="Edit">
+    <div class="container-toolbar tb-top">
+        <h6 class="title">@ViewData["Title"]</h6>
+        <div class="toolbar">
+            <button type="submit" class="tb-button"><i class="fa fa-redo-alt"></i><br />atualizar</button>
+            <a asp-action="AdicionarAlimentoSubstituto" asp-route-id="@Model.Id" class="tb-button" data-modal><i class="fa fa-plus"></i><br />substituição</a>
+            <a href="javascript:window.history.back();" class="tb-button"><i class="fa fa-chevron-left"></i><br />voltar</a>
+        </div>
+    </div>
+    <div class="container-body">
+        <vc:summary></vc:summary>
+        <div class="card card-default">
+            <div class="card-default-header">Editar Alimento</div>
+            <div class="card-default-body">
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <label asp-for="Descricao" class="control-label"></label>
+                    <input asp-for="Descricao" class="form-control" />
+                    <span asp-validation-for="Descricao" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Carboidratos" class="control-label"></label>
+                    <input asp-for="Carboidratos" id="carboidratos" class="form-control" />
+                    <span asp-validation-for="Carboidratos" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Proteinas" class="control-label"></label>
+                    <input asp-for="Proteinas" id="proteinas" class="form-control" />
+                    <span asp-validation-for="Proteinas" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Gorduras" class="control-label"></label>
+                    <input asp-for="Gorduras" id="gorduras" class="form-control" />
+                    <span asp-validation-for="Gorduras" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Calorias" class="control-label"></label>
+                    <input asp-for="Calorias" id="calorias" class="form-control" disabled />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Porcao" class="control-label"></label>
+                    <input asp-for="Porcao" class="form-control" />
+                    <span asp-validation-for="Porcao" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="UnidadeMedidaId" class="control-label"></label>
+                    <input asp-for="UnidadeMedida.Descricao" class="form-control" disabled />
+                </div>
+                <div class="form-group">
+                    <label asp-for="GrupoAlimentoId" class="control-label"></label>
+                    <select asp-for="GrupoAlimentoId" class="form-control" asp-items="@(new SelectList(Model.GruposAlimentosDropdown, "Id", "Descricao"))">
+                        <option></option>
+                    </select>
+                    <span asp-validation-for="GrupoAlimentoId" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="card card-default mt-4">
+            <div class="card-default-header">Substituições</div>
+            <div class="card-default-body">
+                <div id="ElementTarget">
+                    <partial name="_Substituicoes" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-toolbar tb-bottom">
+        <div class="toolbar">
+            <button type="submit" class="tb-button"><i class="fa fa-redo-alt"></i><br />atualizar</button>
+            <a asp-action="AdicionarAlimentoSubstituto" asp-route-id="@Model.Id" class="tb-button" data-modal><i class="fa fa-plus"></i><br />substituição</a>
+            <a href="javascript:window.history.back();" class="tb-button"><i class="fa fa-chevron-left"></i><br />voltar</a>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        await Html.RenderPartialAsync("_CalculoCaloriasScriptsPartial");
+    }
+}

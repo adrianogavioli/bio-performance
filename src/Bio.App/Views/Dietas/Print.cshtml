@@ -1,0 +1,145 @@
+﻿@model DietaViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Imprimir Dieta - Bio.App</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
+              crossorigin="anonymous"
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" />
+    </environment>
+
+    <link href="~/lib/cognitom-paper/paper.css" rel="stylesheet" />
+
+    <style>
+        body.A4.landscape .sheet { height: auto; }
+        label, table { font-size: 10pt; }
+        label + span, label + br + span { font-weight: 600;}
+        table { width: 100%; border-bottom: 1px solid #9f9d9d; }
+        th, td { padding: 5px; vertical-align: central; border-top: 1px solid #9f9d9d;}
+        .paper-header { padding: 10px; background-color: rgb(129, 209, 255); }
+        .paper-resume { padding: 10px; margin: 2px 0 10px; text-align: center; background-color: #ffc107; }
+        .paper-body { margin-bottom: 10px; background-color: rgba(0, 0, 0, 0.05); }
+        .paper-table-striped { background-color: rgba(129, 209, 255, 0.5) }
+        .paper-footer { padding: 10px; border-top: 1px solid #9f9d9d; border-bottom: 1px solid #9f9d9d; font-size: 10pt; background-color: rgba(0, 0, 0, 0.05); }
+    </style>
+
+</head>
+<body class="A4 landscape">
+    <div class="sheet padding-10mm">
+        <div class="paper-header">
+            <div class="row">
+                <div class="col-md-9"><label asp-for="Atendimento.PacienteId"></label>: <span>@Model.Atendimento.Paciente.Nome</span></div>
+                <div class="col-md-3 text-right"><label asp-for="DataCadastro"></label>: <span>@Model.DataCadastro.ToShortDateString()</span></div>
+            </div>
+            <div class="row">
+                <div class="col-md-9"><label asp-for="Atendimento.ProfissionalId"></label>: <span>@Model.Atendimento.Profissional.Nome</span></div>
+                <div class="col-md-3 text-right"><label asp-for="TaxaMetabolicaBasal"></label>: <span>@Model.TaxaMetabolicaBasal</span></div>
+            </div>
+        </div>
+        <div class="paper-resume">
+            <div class="row">
+                <div class="col-md-3 border-right"><label asp-for="ProteinasTotais"></label><br /><span>@Model.ProteinasTotais.ToString("n2")</span></div>
+                <div class="col-md-3 border-right"><label asp-for="GordurasTotais"></label><br /><span>@Model.GordurasTotais.ToString("n2")</span></div>
+                <div class="col-md-3 border-right"><label asp-for="CarboidratosTotais"></label><br /><span>@Model.CarboidratosTotais.ToString("n2")</span></div>
+                <div class="col-md-3"><label asp-for="CaloriasTotais"></label><br /><span>@Model.CaloriasTotais</span> <small>(#@Model.DiferencaCalorica)</small></div>
+            </div>
+        </div>
+        <div class="paper-body">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Refeição</th>
+                        <th>Alimento</th>
+                        <th>Qtd.</th>
+                        <th>Unidade</th>
+                        <th>Calorias</th>
+                        <th>Observações</th>
+                        <th>Substituições</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        var refeicao = string.Empty;
+                        var bgColor = false;
+
+                        foreach (var item in Model.Refeicoes)
+                        {
+                            if (item.Refeicao.Descricao != refeicao)
+                            {
+                                if (bgColor)
+                                {
+                                    bgColor = false;
+                                }
+                                else
+                                {
+                                    bgColor = true;
+                                }
+                            }
+
+                            if (bgColor)
+                            {
+                                <tr class="paper-table-striped">
+                                    <td>@item.Refeicao.Descricao</td>
+                                    <td>@item.Alimento.Descricao</td>
+                                    <td>@item.Quantidade</td>
+                                    <td>@item.Alimento.UnidadeMedida.Descricao</td>
+                                    <td>@item.Calorias</td>
+                                    <td>@item.Observacao</td>
+                                    <td>
+                                        @if (item.DietasRefeicoesSubstituicoes != null)
+                                        {
+                                            foreach (var subs in item.DietasRefeicoesSubstituicoes)
+                                            {
+                                                <span>- @subs.Alimento.Descricao @subs.Quantidade@subs.Alimento.UnidadeMedida.Codigo @subs.Observacao</span><br />
+                                            }
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td>@item.Refeicao.Descricao</td>
+                                    <td>@item.Alimento.Descricao</td>
+                                    <td>@item.Quantidade</td>
+                                    <td>@item.Alimento.UnidadeMedida.Descricao</td>
+                                    <td>@item.Calorias</td>
+                                    <td>@item.Observacao</td>
+                                    <td>
+                                        @if (item.DietasRefeicoesSubstituicoes != null)
+                                        {
+                                            foreach (var subs in item.DietasRefeicoesSubstituicoes)
+                                            {
+                                                <span>- @subs.Alimento.Descricao @subs.Quantidade@subs.Alimento.UnidadeMedida.Codigo @subs.Observacao</span><br />
+                                            }
+                                        }
+                                    </td>
+                                </tr>
+                            }
+
+                            refeicao = item.Refeicao.Descricao;
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="paper-footer">
+            <label>Observações:</label><br />@Model.Observacao
+        </div>
+    </div>
+</body>
+</html>
