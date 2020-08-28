@@ -1,0 +1,64 @@
+﻿@model PacienteViewModel
+
+@if (Model.BioImpedancias == null || Model.BioImpedancias.Count() == 0)
+{
+    <h6>Não há bioimpedâncias cadastradas.</h6>
+}
+else
+{
+    <table class="table table-default table-responsive-xl table-striped">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.BioImpedancias[0].TaxaMetabolicaBasal)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BioImpedancias[0].AguaCorporal)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BioImpedancias[0].GorduraCorporal)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BioImpedancias[0].Proteinas)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BioImpedancias[0].Minerais)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BioImpedancias[0].DataCadastro)
+                </th>
+                <th width="1%"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.BioImpedancias)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TaxaMetabolicaBasal)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AguaCorporal)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GorduraCorporal)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Proteinas)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Minerais)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DataCadastro)
+                    </td>
+                    <td class="btn-group">
+                        <a asp-action="Details" asp-controller="Bioimpedancias" asp-route-id="@item.Id" class="table-default-btn text-info" title="Detalhar"><span class="fa fa-search"></span></a>
+                        <a supress-by-action="Details" asp-action="Edit" asp-controller="Bioimpedancias" asp-route-id="@item.Id" class="table-default-btn text-success" title="Editar"><span class="fa fa-pencil-alt"></span></a>
+                        <a supress-by-action="Details" asp-action="Delete" asp-controller="Bioimpedancias" asp-route-id="@item.Id" class="table-default-btn text-danger" title="Remover"><span class="fa fa-trash"></span></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

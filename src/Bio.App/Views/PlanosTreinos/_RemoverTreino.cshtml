@@ -1,0 +1,38 @@
+﻿@model TreinoViewModel
+@{
+    ViewData["Title"] = "Remover Treino";
+}
+
+<div class="modal-header">@ViewData["Title"]</div>
+<div class="modal-alert-message">
+    <h6>Tem certeza que deseja remover este treino?</h6>
+</div>
+<div class="modal-body">
+    <div class="form-group">
+        <label asp-for="Ordem" class="control-label"></label>
+        <input asp-for="Ordem" class="form-control" disabled />
+    </div>
+    <div class="form-group">
+        <label asp-for="Titulo" class="control-label"></label>
+        <input asp-for="Titulo" class="form-control" disabled />
+    </div>
+    <div class="form-group">
+        <label asp-for="GruposMuscularesConcats" class="control-label"></label>
+        <input asp-for="GruposMuscularesConcats" class="form-control" disabled />
+    </div>
+    <div class="form-group">
+        <label asp-for="Observacao" class="control-label"></label>
+        <textarea rows="3" asp-for="Observacao" class="form-control" disabled></textarea>
+    </div>
+    <div class="custom-control custom-switch mt-4">
+        <input asp-for="Ativo" type="checkbox" class="custom-control-input fa-2x" id="cbxAtivoTreinoRemove" disabled />
+        <label class="custom-control-label" for="cbxAtivoTreinoRemove">Ativo</label>
+    </div>
+</div>
+<div class="modal-footer">
+    <form asp-action="RemoverTreino">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Remover" class="btn btn-danger" />
+    </form>
+    <input type="button" class="btn btn-dark" value="Fechar" data-dismiss="modal" />
+</div>

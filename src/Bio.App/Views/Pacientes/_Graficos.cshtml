@@ -1,0 +1,62 @@
+﻿@model PacienteViewModel
+
+<style>
+    .chart {
+        width: 100%;
+        height: 500px;
+    }
+</style>
+
+<div>
+    <div class="p-3 bg-secondary text-white font-weight-bold">Composição Corporal</div>
+    <div id="divGraficoComposicaoCorporal" class="chart"></div>
+</div>
+
+<div class="mt-4">
+    <div class="p-3 bg-secondary text-white font-weight-bold">Percentual Gordura</div>
+    <div id="divGraficoPercentualGordura" class="chart"></div>
+</div>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+
+    google.charts.load('current', { 'packages': ['corechart'] });
+
+    $('#nav-tab-graphs').on('shown.bs.tab', function (e) {
+        drawGraficos()
+    });
+
+    function drawGraficos() {
+        drawGraficoComposicaoCorporal();
+        drawGraficoPercentualGordura();
+    }
+
+    function drawGraficoComposicaoCorporal() {
+        var data = google.visualization.arrayToDataTable([@Html.Raw(ViewBag.ArrayGraficoComposicaoCorporal)]);
+
+        var options = {
+            chartArea: { width: '90%', height: '70%' },
+            vAxis: { minValue: 0 },
+            legend: { position: 'top', alignment: 'end' }
+        };
+
+        var chart = new google.visualization.AreaChart(document.getElementById('divGraficoComposicaoCorporal'));
+        chart.draw(data, options);
+    }
+
+    function drawGraficoPercentualGordura() {
+        var data = google.visualization.arrayToDataTable([@Html.Raw(ViewBag.ArrayGraficoPercentualGordura)]);
+
+        var options = {
+            chartArea: { width: '90%', height: '70%' },
+            vAxis: { minValue: 0 },
+            legend: { position: 'top', alignment: 'end' },
+            seriesType: 'bars',
+            series: { 3: { type: 'line' } }
+        };
+
+        var chart = new google.visualization.ComboChart(document.getElementById('divGraficoPercentualGordura'));
+        chart.draw(data, options);
+    }
+
+</script>

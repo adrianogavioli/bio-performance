@@ -1,0 +1,52 @@
+﻿@model TreinoViewModel
+
+@if (Model.Exercicios == null || Model.Exercicios.Count == 0)
+{
+    <span>Não há exercícios cadastrados.</span>
+}
+else
+{
+    <table class="table table-default table-responsive-xl table-striped">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Exercicios[0].Ordem)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Exercicios[0].CatalogoExercicio.Descricao)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Exercicios[0].Repeticao)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Exercicios[0].Observacao)
+                </th>
+                <th width="1%"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Exercicios)
+            {
+                <tr>
+                    <td>
+                        @item.Ordem
+                    </td>
+                    <td>
+                        @item.CatalogoExercicio.Descricao
+                    </td>
+                    <td>
+                        @item.Repeticao
+                    </td>
+                    <td>
+                        @item.Observacao
+                    </td>
+                    <td class="btn-group">
+                        <a supress-by-action="DetalharTreino" asp-action="EditarExercicio" asp-route-id="@item.Id" class="table-default-btn text-success" title="Editar" data-modal-reverso><span class="fa fa-pencil-alt"></span></a>
+                        <a supress-by-action="DetalharTreino" asp-action="RemoverExercicio" asp-route-id="@item.Id" class="table-default-btn text-danger" title="Remover" data-modal-reverso><span class="fa fa-trash"></span></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+

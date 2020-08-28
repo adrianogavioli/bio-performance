@@ -1,0 +1,116 @@
+﻿@model PlanoTreinoViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Imprimir Plano de Treino - Bio.App</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
+              crossorigin="anonymous"
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" />
+    </environment>
+
+    <link href="~/lib/cognitom-paper/paper.css" rel="stylesheet" />
+
+    <style>
+        body.A4.landscape .sheet {
+            height: auto;
+        }
+
+        label {
+            font-size: 10pt;
+        }
+
+            label + span, label + br + span, .text-bold {
+                font-weight: 600;
+            }
+
+        .paper-header {
+            padding: 10px;
+            background-color: rgb(129, 209, 255);
+        }
+
+        .paper-resume {
+            padding: 5px;
+            margin: 2px 0 10px;
+            text-align: center;
+            background-color: #ffc107;
+        }
+
+        .paper-body {
+            display: flex;
+            flex-flow: row;
+            margin-bottom: 10px;
+        }
+
+        .paper-footer {
+            padding: 10px;
+            border-top: 1px solid #9f9d9d;
+            border-bottom: 1px solid #9f9d9d;
+            font-size: 10pt;
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+    </style>
+
+</head>
+<body class="A4 landscape">
+    <div class="sheet padding-10mm">
+        <div class="paper-header">
+            <div class="row">
+                <div class="col-md-9"><label asp-for="Atendimento.PacienteId"></label>: <span>@Model.Atendimento.Paciente.Nome</span></div>
+                <div class="col-md-3 text-right"><label asp-for="DataCadastro"></label>: <span>@Model.DataCadastro.ToShortDateString()</span></div>
+            </div>
+            <div class="row">
+                <div class="col-md-9"><label asp-for="Atendimento.ProfissionalId"></label>: <span>@Model.Atendimento.Profissional.Nome</span></div>
+            </div>
+        </div>
+        <div class="paper-resume"></div>
+        <div class="paper-body">
+            @foreach (var treino in Model.Treinos)
+            {
+                <div class="card" style="width: 50%; margin: 5px;">
+                    <div class="card-header">
+                        <div class="row text-bold">
+                            <div class="col-md-12">@treino.Ordem - @treino.Titulo</div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        @foreach (var exercicio in treino.Exercicios)
+                        {
+                            <div class="p-2 border-top border-bottom" style="margin-top: -1px;">
+                                <div class="row text-bold">
+                                    <div class="col-md-12">@exercicio.Ordem - <i>@exercicio.CatalogoExercicio.GrupoMuscular.Descricao</i> - <span>@exercicio.CatalogoExercicio.Descricao</span></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">@exercicio.Repeticao</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12"><i>@exercicio.Observacao</i></div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="card-footer">
+                        <label asp-for="@treino.Observacao"></label>:<br /><span>@treino.Observacao</span>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="paper-footer">
+            <label asp-for="Observacao"></label>:<br /><span>@Model.Observacao</span>
+        </div>
+    </div>
+</body>
+</html>

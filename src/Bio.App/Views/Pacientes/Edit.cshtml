@@ -1,0 +1,88 @@
+﻿@model Bio.App.ViewModels.PacienteViewModel
+@using Bio.Business.Models.Enums
+
+@{
+    ViewData["Title"] = "Editar Paciente";
+}
+
+<form asp-action="Edit">
+    <div class="container-toolbar tb-top">
+        <h6 class="title">@ViewData["Title"]</h6>
+        <div class="toolbar">
+            <button type="submit" class="tb-button"><i class="fa fa-redo-alt"></i><br />atualizar</button>
+            <a asp-action="Index" class="tb-button"><i class="fa fa-chevron-left"></i><br />voltar</a>
+        </div>
+    </div>
+    <div class="container-body">
+        <vc:summary></vc:summary>
+        <div class="card card-default">
+            <div class="card-default-header">Editar Paciente</div>
+            <div class="card-default-body">
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <label asp-for="CPF" class="control-label"></label>
+                    <input asp-for="CPF" class="form-control" />
+                    <span asp-validation-for="CPF" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Nome" class="control-label"></label>
+                    <input asp-for="Nome" class="form-control" />
+                    <span asp-validation-for="Nome" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DataNascimento" class="control-label"></label>
+                    <input asp-for="DataNascimento" type="text" class="form-control" />
+                    <span asp-validation-for="DataNascimento" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Altura" class="control-label"></label>
+                    <input asp-for="Altura" class="form-control" />
+                    <span asp-validation-for="Altura" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Genero" class="control-label"></label>
+                    <select asp-for="Genero" class="form-control" asp-items="@Html.GetEnumSelectList<Genero>()"></select>
+                    <span asp-validation-for="Genero" class="text-danger"></span>
+                </div>
+                <nav class="mt-5">
+                    <div class="nav nav-tabs" role="tablist">
+                        <a class="nav-item nav-link active" id="nav-tab-atend" data-toggle="tab" href="#nav-atend" role="tab" aria-controls="nav-atend" aria-selected="true">Atendimentos</a>
+                        <a class="nav-item nav-link" id="nav-tab-bios" data-toggle="tab" href="#nav-bios" role="tab" aria-controls="nav-bios" aria-selected="false">Bioimpedâncias</a>
+                        <a class="nav-item nav-link" id="nav-tab-diario" data-toggle="tab" href="#nav-diario" role="tab" aria-controls="nav-diario" aria-selected="false">Diários</a>
+                        <a class="nav-item nav-link" id="nav-tab-graphs" data-toggle="tab" href="#nav-graphs" role="tab" aria-controls="nav-graphs" aria-selected="false">Gráficos</a>
+                    </div>
+                </nav>
+                <div class="tab-content mt-3">
+                    <div class="tab-pane fade show active" id="nav-atend" role="tabpanel" aria-labelledby="nav-tab-atend">
+                        <partial name="_Atendimentos" />
+                    </div>
+                    <div class="tab-pane fade show" id="nav-bios" role="tabpanel" aria-labelledby="nav-tab-bios">
+                        <partial name="_Bioimpedancias" />
+                    </div>
+                    <div class="tab-pane fade show" id="nav-diario" role="tabpanel" aria-labelledby="nav-tab-diario">
+                        <partial name="_Diarios" />
+                    </div>
+                    <div class="tab-pane fade" id="nav-graphs" role="tabpanel" aria-labelledby="nav-tab-graphs">
+                        <partial name="_Graficos" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-toolbar tb-bottom">
+        <div class="toolbar">
+            <button type="submit" class="tb-button"><i class="fa fa-redo-alt"></i><br />atualizar</button>
+            <a asp-action="Index" class="tb-button"><i class="fa fa-chevron-left"></i><br />voltar</a>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script src="~/lib/jquery.maskedinput/jquery.maskedinput.js"></script>
+
+    <script>
+        $("#DataNascimento").mask("99/99/9999");
+    </script>
+}

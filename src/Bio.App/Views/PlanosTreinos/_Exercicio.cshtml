@@ -1,0 +1,36 @@
+﻿@model ExercicioViewModel
+
+<table class="table table-default table-responsive-xl table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Ordem)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CatalogoExercicioId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Repeticao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Observacao)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @Model.Ordem
+            </td>
+            <td>
+                @Model.CatalogoExercicio.Descricao
+            </td>
+            <td>
+                @Model.Repeticao
+            </td>
+            <td>
+                @Model.Observacao
+            </td>
+        </tr>
+    </tbody>
+</table>

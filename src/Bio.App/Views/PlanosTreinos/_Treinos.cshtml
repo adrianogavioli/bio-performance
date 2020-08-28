@@ -1,0 +1,70 @@
+﻿@model PlanoTreinoViewModel
+
+<div class="card card-default mt-4">
+    <div class="card-default-header">Treinos</div>
+    <div class="card-default-body">
+        @if (Model.Treinos == null || Model.Treinos.Count() == 0)
+        {
+            <h6>Não há treinos cadastrados.</h6>
+        }
+        else
+        {
+            <table class="table table-default table-responsive-xl table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Treinos[0].Ordem)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Treinos[0].Titulo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Treinos[0].GruposMuscularesConcats)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Treinos[0].Observacao)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Treinos[0].Ativo)
+                        </th>
+                        <th width="1%"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Treinos)
+                    {
+                        <tr>
+                            <td>
+                                @item.Ordem
+                            </td>
+                            <td>
+                                @item.Titulo
+                            </td>
+                            <td>
+                                @item.GruposMuscularesConcats
+                            </td>
+                            <td>
+                                @item.Observacao
+                            </td>
+                            <td>
+                                @if (item.Ativo) { <span>SIM</span> } else { <span>NÃO</span> }
+                            </td>
+                            <td class="btn-group">
+                                <a asp-action="DetalharTreino" asp-route-id="@item.Id" class="table-default-btn text-info" title="Detalhar" data-modal><span class="fa fa-search"></span></a>
+                                <a supress-by-action="Details" asp-action="EditarTreino" asp-route-id="@item.Id" class="table-default-btn text-success" title="Editar" data-modal><span class="fa fa-pencil-alt"></span></a>
+                                <a supress-by-action="Details" asp-action="GerenciarExercicio" asp-route-treinoId="@item.Id" class="table-default-btn text-secondary" title="Exercícios" data-modal><span class="fa fa-dumbbell"></span></a>
+                                <a supress-by-action="Details" asp-action="RemoverTreino" asp-route-id="@item.Id" class="table-default-btn text-danger" title="Remover" data-modal><span class="fa fa-trash"></span></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        AjaxModal();
+    });
+</script>

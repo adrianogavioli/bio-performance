@@ -1,0 +1,39 @@
+﻿@model TreinoViewModel
+@{
+    ViewData["Title"] = "Editar Treino";
+}
+
+<div class="modal-header">@ViewData["Title"]</div>
+<form asp-action="EditarTreino">
+    <vc:summary-modal></vc:summary-modal>
+    <div class="modal-body">
+        <input type="hidden" asp-for="Id" />
+        <div class="form-group">
+            <label asp-for="Ordem" class="control-label"></label>
+            <input asp-for="Ordem" class="form-control" />
+            <span asp-validation-for="Ordem" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Titulo" class="control-label"></label>
+            <input asp-for="Titulo" class="form-control" />
+            <span asp-validation-for="Titulo" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="GruposMuscularesConcats" class="control-label"></label>
+            <input asp-for="GruposMuscularesConcats" class="form-control" disabled />
+        </div>
+        <div class="form-group mb-0">
+            <label asp-for="Observacao" class="control-label"></label>
+            <textarea rows="3" asp-for="Observacao" class="form-control"></textarea>
+            <span asp-validation-for="Observacao" class="text-danger"></span>
+        </div>
+        <div class="custom-control custom-switch mt-4">
+            <input asp-for="Ativo" type="checkbox" class="custom-control-input fa-2x" id="cbxAtivoTreinoEdit" />
+            <label class="custom-control-label" for="cbxAtivoTreinoEdit">Ativo</label>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <input type="submit" value="Atualizar" class="btn btn-success" />
+        <input type="button" class="btn btn-dark" value="Fechar" data-dismiss="modal" />
+    </div>
+</form>

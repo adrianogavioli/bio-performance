@@ -1,0 +1,24 @@
+﻿@model TreinoViewModel
+@{
+    ViewData["Title"] = "Exercícios";
+}
+
+<div class="modal-header">@ViewData["Title"]</div>
+<div class="modal-body">
+    <partial name="_Treino" />
+    <hr />
+    <h6 class="text-secondary">Exercícios</h6>
+    <a asp-action="AdicionarExercicio" asp-route-treinoId="@Model.Id" class="btn btn-block btn-primary" data-modal-reverso>Adicionar Exercício</a>
+    <div class="mt-3">
+        <partial name="_Exercicios" />
+    </div>
+</div>
+<div class="modal-footer">
+    <input type="button" class="btn btn-dark" value="Fechar" data-dismiss="modal" />
+</div>
+
+<script>
+    $(document).ready(function () {
+        AjaxModalReverso();
+    });
+</script>

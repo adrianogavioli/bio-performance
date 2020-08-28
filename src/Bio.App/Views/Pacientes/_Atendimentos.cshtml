@@ -1,0 +1,46 @@
+﻿@model PacienteViewModel
+
+@if (Model.Atendimentos == null || Model.Atendimentos.Count == 0)
+{
+    <h6>Não há atendimentos cadastrados.</h6>
+}
+else
+{
+    <table class="table table-default table-responsive-xl table-striped">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Atendimentos[0].ProfissionalId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Atendimentos[0].Objetivo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Atendimentos[0].DataCadastro)
+                </th>
+                <th width="1%"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Atendimentos)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Profissional.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Objetivo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DataCadastro)
+                    </td>
+                    <td class="btn-group">
+                        <a asp-action="Details" asp-controller="Atendimentos" asp-route-id="@item.Id" class="table-default-btn text-info" title="Detalhar"><span class="fa fa-search"></span></a>
+                        <a supress-by-action="Details" asp-action="Edit" asp-controller="Atendimentos" asp-route-id="@item.Id" class="table-default-btn text-success" title="Editar"><span class="fa fa-pencil-alt"></span></a>
+                        <a supress-by-action="Details" asp-action="Delete" asp-controller="Atendimentos" asp-route-id="@item.Id" class="table-default-btn text-danger" title="Remover"><span class="fa fa-trash"></span></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

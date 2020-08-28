@@ -1,0 +1,53 @@
+﻿@model TreinoViewModel
+@{
+    ViewData["Title"] = "Adicionar Treino";
+}
+
+<div class="modal-header">@ViewData["Title"]</div>
+<form asp-action="AdicionarTreino">
+    <vc:summary-modal></vc:summary-modal>
+    <div class="modal-body">
+        <input type="hidden" asp-for="PlanoTreinoId" />
+        <div class="row">
+            <div class="col-md-8">
+                <div class="form-group">
+                    <label asp-for="Ordem" class="control-label"></label>
+                    <input asp-for="Ordem" class="form-control" />
+                    <span asp-validation-for="Ordem" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Titulo" class="control-label"></label>
+                    <input asp-for="Titulo" class="form-control" />
+                    <span asp-validation-for="Titulo" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-0">
+                    <label asp-for="Observacao" class="control-label"></label>
+                    <textarea rows="3" asp-for="Observacao" class="form-control"></textarea>
+                    <span asp-validation-for="Observacao" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header bg-info text-white text-center">Grupos Musculares</div>
+                    <div class="card-body bg-light">
+                        @{
+                            for (int i = 0; i < Model.GruposMuscularesDropdown.Count; i++)
+                            {
+                                <div class="custom-control custom-checkbox mb-2">
+                                    <input asp-for="@Model.GruposMuscularesDropdown[i].Selecionado" type="checkbox" id="cbx_@(i)" class="custom-control-input" />
+                                    <label for="cbx_@(i)" class="custom-control-label">@Model.GruposMuscularesDropdown[i].Descricao</label>
+                                </div>
+                                <input asp-for="@Model.GruposMuscularesDropdown[i].Id" type="hidden" />
+                                <input asp-for="@Model.GruposMuscularesDropdown[i].Descricao" type="hidden" />
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <input type="submit" value="Adicionar" class="btn btn-success" />
+        <input type="button" class="btn btn-dark" value="Fechar" data-dismiss="modal" />
+    </div>
+</form>

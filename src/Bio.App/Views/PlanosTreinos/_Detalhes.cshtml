@@ -1,0 +1,22 @@
+﻿@model PlanoTreinoViewModel
+
+<div class="form-group">
+    <label asp-for="Atendimento.PacienteId" class="control-label"></label>
+    <input asp-for="Atendimento.Paciente.Nome" class="form-control" disabled />
+</div>
+<div class="form-group">
+    <label asp-for="Atendimento.ProfissionalId" class="control-label"></label>
+    <input asp-for="Atendimento.Profissional.Nome" class="form-control" disabled />
+</div>
+<div class="form-group">
+    <label asp-for="Observacao" class="control-label"></label>
+    <textarea asp-for="Observacao" rows="3" class="form-control" disabled></textarea>
+</div>
+<div class="form-group">
+    <label asp-for="DataCadastro" class="control-label"></label>
+    <input asp-for="DataCadastro" class="form-control" disabled />
+</div>
+<div class="custom-control custom-switch mt-4">
+    <input asp-for="Ativo" type="checkbox" class="custom-control-input" id="cbxAtivoPlanoTreinoDatails" disabled />
+    <label class="custom-control-label" for="cbxAtivoPlanoTreinoDatails">Ativo</label>
+</div>

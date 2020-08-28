@@ -1,0 +1,72 @@
+﻿@model IEnumerable<RefeicaoViewModel>
+
+@{
+    ViewData["Title"] = "Refeições";
+}
+
+<div class="container-toolbar tb-top">
+    <h6 class="title">@ViewData["Title"]</h6>
+    <div class="toolbar">
+        <a asp-action="Create" class="tb-button"><i class="fa fa-plus"></i><br />adicionar</a>
+    </div>
+</div>
+<div class="container-body">
+    @if (Model == null || Model.Count() == 0)
+    {
+        <h6>Não há refeições cadastradas.</h6>
+    }
+    else
+    {
+        <div class="container-table-default">
+            <table id="tableIndex" class="table table-default table-responsive-xl display">
+                <thead>
+                    <tr>
+                        <th width="1%">
+                            @Html.DisplayNameFor(model => model.Ordem)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Descricao)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Ativo)
+                        </th>
+                        <th width="1%"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @item.Ordem
+                            </td>
+                            <td>
+                                @item.Descricao
+                            </td>
+                            <td>
+                                @if (item.Ativo)
+                                {
+                                    <span>SIM</span>
+                                }
+                                else
+                                {
+                                    <span>NÃO</span>
+                                }
+                            </td>
+                            <td class="btn-group">
+                                <a asp-action="Details" asp-route-id="@item.Id" class="table-default-btn text-info" title="Detalhar"><span class="fa fa-search"></span></a>
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="table-default-btn text-success" title="Editar"><span class="fa fa-pencil-alt"></span></a>
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="table-default-btn text-danger" title="Remover"><span class="fa fa-trash"></span></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>
+<div class="container-toolbar tb-bottom">
+    <div class="toolbar">
+        <a asp-action="Create" class="tb-button"><i class="fa fa-plusn"></i><br />adicionar</a>
+    </div>
+</div>

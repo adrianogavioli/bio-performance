@@ -1,0 +1,29 @@
+<script>
+    $(document).ready(function () {
+        $('#carboidratos').blur(function () { CalcularCalorias() });
+        $('#proteinas').blur(function () { CalcularCalorias() });
+        $('#gorduras').blur(function () { CalcularCalorias() });
+    });
+
+    var formatter = new Intl.NumberFormat('pt-BR', {
+        style: 'decimal',
+        currency: 'BRL',
+        minimumFractionDigits: 2
+    })
+
+    function CalcularCalorias() {
+        var carboidratos = parseFloat(document.getElementById('carboidratos').value.replace(".", "").replace(",", "."));
+        var proteinas = parseFloat(document.getElementById('proteinas').value.replace(".", "").replace(",", "."));
+        var gorduras = parseFloat(document.getElementById('gorduras').value.replace(".", "").replace(",", "."));
+
+        var calorias = 0;
+
+        if (carboidratos > 0) calorias += carboidratos * 4;
+
+        if (proteinas > 0) calorias += proteinas * 4;
+
+        if (gorduras > 0) calorias += gorduras * 9;
+
+        document.getElementById("calorias").value = formatter.format(calorias);
+    }
+</script>

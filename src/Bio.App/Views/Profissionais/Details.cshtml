@@ -1,0 +1,37 @@
+﻿@model ProfissionalViewModel
+
+@{
+    ViewData["Title"] = "Detalhar Profissional";
+}
+
+<div class="container-toolbar tb-top">
+    <h6 class="title">@ViewData["Title"]</h6>
+    <div class="toolbar">
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="tb-button"><i class="fa fa-pencil-alt"></i><br />editar</a>
+        <a asp-action="Index" class="tb-button"><i class="fa fa-chevron-left"></i><br />voltar</a>
+    </div>
+</div>
+<div class="container-body">
+    <div class="card card-default">
+        <div class="card-default-header">Detalhes do Profissional</div>
+        <div class="card-default-body">
+            <partial name="_Detalhes" />
+            <nav class="mt-5">
+                <div class="nav nav-tabs" role="tablist">
+                    <a class="nav-item nav-link active" id="nav-tab-atend" data-toggle="tab" href="#nav-atend" role="tab" aria-controls="nav-atend" aria-selected="true">Atendimentos</a>
+                </div>
+            </nav>
+            <div class="tab-content mt-3">
+                <div class="tab-pane fade show active" id="nav-atend" role="tabpanel" aria-labelledby="nav-tab-atend">
+                    <partial name="_Atendimentos" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-toolbar tb-bottom">
+    <div class="toolbar">
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="tb-button"><i class="fa fa-pencil-alt"></i><br />editar</a>
+        <a asp-action="Index" class="tb-button"><i class="fa fa-chevron-left"></i><br />voltar</a>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+﻿@model ExercicioViewModel
+
+@{
+    ViewData["Title"] = "Editar Exercício";
+}
+
+<div class="modal-header">@ViewData["Title"]</div>
+<form asp-action="EditarExercicio">
+    <vc:summary-modal></vc:summary-modal>
+    <div class="modal-body">
+        <partial name="_Treino" model="@Model.Treino" />
+        <hr />
+        <input type="hidden" asp-for="Id" />
+        <div class="form-group">
+            <label asp-for="Ordem" class="control-label"></label>
+            <input asp-for="Ordem" class="form-control" />
+            <span asp-validation-for="Ordem" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="CatalogoExercicioId" class="control-label"></label>
+            <input asp-for="CatalogoExercicio.Descricao" class="form-control" disabled />
+        </div>
+        <div class="form-group">
+            <label asp-for="Repeticao" class="control-label"></label>
+            <input asp-for="Repeticao" class="form-control" />
+            <span asp-validation-for="Repeticao" class="text-danger"></span>
+        </div>
+        <div class="form-group mb-0">
+            <label asp-for="Observacao" class="control-label"></label>
+            <textarea rows="3" asp-for="Observacao" class="form-control"></textarea>
+            <span asp-validation-for="Observacao" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <input type="submit" value="Atualizar" class="btn btn-success" />
+        <input type="button" class="btn btn-dark" value="Fechar" data-dismiss="modal" />
+    </div>
+</form>

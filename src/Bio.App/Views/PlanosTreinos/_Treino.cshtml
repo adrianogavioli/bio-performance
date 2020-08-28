@@ -1,0 +1,42 @@
+﻿@model TreinoViewModel
+
+<table class="table table-default table-responsive-xl table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Ordem)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Titulo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GruposMuscularesConcats)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Observacao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ativo)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @Model.Ordem
+            </td>
+            <td>
+                @Model.Titulo
+            </td>
+            <td>
+                @Model.GruposMuscularesConcats
+            </td>
+            <td>
+                @Model.Observacao
+            </td>
+            <td>
+                @if (Model.Ativo) { <span>SIM</span> } else { <span>NÃO</span> }
+            </td>
+        </tr>
+    </tbody>
+</table>

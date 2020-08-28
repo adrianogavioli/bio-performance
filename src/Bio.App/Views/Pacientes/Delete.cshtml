@@ -1,0 +1,43 @@
+﻿@model PacienteViewModel
+
+@{
+    ViewData["Title"] = "Remover Paciente";
+}
+
+<div class="container-toolbar tb-top">
+    <h6 class="title text-danger">@ViewData["Title"]</h6>
+    <div class="toolbar">
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="Id" />
+            <button type="submit" class="tb-button"><i class="fa fa-trash"></i><br />remover</button>
+        </form>
+        <a asp-action="Index" class="tb-button"><i class="fa fa-chevron-left"></i><br />voltar</a>
+    </div>
+</div>
+<div class="container-body">
+    <vc:summary></vc:summary>
+    <div class="card-default">
+        <div class="card-default-header text-danger">Tem certeza que deseja remover este paciente?</div>
+        <div class="card-default-body">
+            <partial name="_Detalhes" />
+        </div>
+    </div>
+</div>
+<div class="container-toolbar tb-bottom">
+    <div class="toolbar">
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="Id" />
+            <button type="submit" class="tb-button"><i class="fa fa-trash"></i><br />remover</button>
+        </form>
+        <a asp-action="Index" class="tb-button"><i class="fa fa-chevron-left"></i><br />voltar</a>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/lib/jquery.maskedinput/jquery.maskedinput.js"></script>
+
+    <script>
+        $("#CPF").mask("999.999.999-99");
+        $("#DataNascimento").mask("99/99/9999");
+    </script>
+}

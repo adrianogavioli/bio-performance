@@ -1,0 +1,63 @@
+﻿@model ProfissionalViewModel
+
+@{
+    ViewData["Title"] = "Editar Profissional";
+}
+
+<form asp-action="Edit">
+    <div class="container-toolbar tb-top">
+        <h6 class="title">@ViewData["Title"]</h6>
+        <div class="toolbar">
+            <button type="submit" class="tb-button"><i class="fa fa-redo-alt"></i><br />atualizar</button>
+            <a asp-action="Index" class="tb-button"><i class="fa fa-chevron-left"></i><br />voltar</a>
+        </div>
+    </div>
+    <div class="container-body">
+        <vc:summary></vc:summary>
+        <div class="card card-default">
+            <div class="card-default-header">Editar Profissional</div>
+            <div class="card-default-body">
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <label asp-for="Nome" class="control-label"></label>
+                    <input asp-for="Nome" class="form-control" />
+                    <span asp-validation-for="Nome" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Documento" class="control-label"></label>
+                    <input asp-for="Documento" class="form-control" />
+                    <span asp-validation-for="Documento" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Especialidade" class="control-label"></label>
+                    <input asp-for="Especialidade" class="form-control" />
+                    <span asp-validation-for="Especialidade" class="text-danger"></span>
+                </div>
+                <div class="custom-control custom-switch mt-4">
+                    <input asp-for="Ativo" type="checkbox" class="custom-control-input" id="cbxAtivoProfissionalDetails" />
+                    <label asp-for="Ativo" class="custom-control-label" for="cbxAtivoProfissionalDetails"></label>
+                </div>
+                <nav class="mt-5">
+                    <div class="nav nav-tabs" role="tablist">
+                        <a class="nav-item nav-link active" id="nav-tab-atend" data-toggle="tab" href="#nav-atend" role="tab" aria-controls="nav-atend" aria-selected="true">Atendimentos</a>
+                    </div>
+                </nav>
+                <div class="tab-content mt-3">
+                    <div class="tab-pane fade show active" id="nav-atend" role="tabpanel" aria-labelledby="nav-tab-atend">
+                        <partial name="_Atendimentos" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-toolbar tb-bottom">
+        <div class="toolbar">
+            <button type="submit" class="tb-button"><i class="fa fa-redo-alt"></i><br />atualizar</button>
+            <a asp-action="Index" class="tb-button"><i class="fa fa-chevron-left"></i><br />voltar</a>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
